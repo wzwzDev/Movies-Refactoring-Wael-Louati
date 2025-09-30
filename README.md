@@ -2,255 +2,255 @@
 
 ## Refactoring: Movies
 
-## <em>**Versión 1.**</em> Clase “Customer” - Método “statement()”
+## <em>**Version 1.**</em> "Customer" Class - "statement()" Method
 
 ### <em>**Smell code**</em>:
-####  Método largo => más de 15 líneas
-- Mal reparto de responsabilidades => Falta de Cohesión
-- Imposible reutilizar para otro formato (HTML) => Inmóvil
+####  Long Method => more than 15 lines
+- Poor distribution of responsibilities => Lack of Cohesion
+- Impossible to reuse for another format (HTML) => Immobile
   * copy+paste => DRY
-- Cambio de política de coste y puntos => 
-  * Viscoso
-- copy+paste => multiplica y complica el mantenimiento
+- Change in cost and points policy => 
+  * Viscous
+- copy+paste => multiplies and complicates maintenance
 
 ### <em>**Refactoring**</em>: 
 
-Extraer Método => switch y código dependiente en método “amountFor” de clase Customer|
+Extract Method => switch and dependent code in "amountFor" method of Customer class
 
 ![claseCustomer](/out/docs/diagrams/src/movies/movies.svg) 
 
-## <em>**Versión 2.**</em> Clase “Customer“ - Método “amountFor()“
+## <em>**Version 2.**</em> "Customer" Class - "amountFor()" Method
 
 ### <em>**Smell code:**</em>
 
-- Malos nombres => “each” y “thisAmount”
+- Bad names => "each" and "thisAmount"
 
 ### <em>**Refactoring:**</em>
 
-- Renombrar variable => “rental” y “result”
+- Rename variable => "rental" and "result"
 
 ![claseCustomer](/out/docs/diagrams/src/movies2/movies.svg)
 
-## <em>**Versión 3.**</em> Clase “Customer“ - Método “amountFor()“
+## <em>**Version 3.**</em> "Customer" Class - "amountFor()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Envidia de características => get(), get(), … desde el servidor
+- Feature Envy => get(), get(), … from the server
 
-- Clase de Datos => get(), get(), … en el cliente
-Experto en Información => la clase responsable es la que tiene la información
+- Data Class => get(), get(), … in the client
+Information Expert => the responsible class is the one that has the information
 
 ### <em>**Refactoring**</em>
 
-- Mover método => método “getCharge” a clase “Rental”
+- Move method => "getCharge" method to "Rental" class
 
-## <em>**Versión 4.**</em> Clase “Customer“ – Método “amountFor()“
+## <em>**Version 4.**</em> "Customer" Class – "amountFor()" Method
 
 ### <em>**Smell Code:**</em>
 
-- “Innecesaria descomposición”: método privado sin justificación
+- "Unnecessary decomposition": private method without justification
 
 ### <em>**Refactoring**</em>
 
-- Método en línea => eliminar “amountFor”
+- Inline Method => remove "amountFor"
 
 ![claseCustomer](/out/docs/diagrams/src/movies4/movies.svg)
 
 
-## <em>**Versión 5.**</em> Clase “Customer“ – Método “statement()“
+## <em>**Version 5.**</em> "Customer" Class – "statement()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Variable temporal innecesaria => “thisAmount”
+- Unnecessary temporary variable => "thisAmount"
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Temporal por Consulta => “each.getCharge()”
+- Replace Temp with Query => "each.getCharge()"
 
 ![claseCustomer](/out/docs/diagrams/src/movies5/movies.svg)
 
-## <em>**Versión 6.**</em> Clase “Customer“ – Método “statement()“
+## <em>**Version 6.**</em> "Customer" Class – "statement()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Método largo => más de 15 líneas
+- Long Method => more than 15 lines
 
 ### <em>**Refactoring**</em>
 
-- Extraer método => método “getFrequentRenterPoints()“ a clase “Rental”
+- Extract method => "getFrequentRenterPoints()" method to "Rental" class
 
-## <em>**Versión 7.**</em> Clase “Customer“ – Método “statement()“
+## <em>**Version 7.**</em> "Customer" Class – "statement()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Variable temporal innecesaria => “totalAmount”
+- Unnecessary temporary variable => "totalAmount"
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Temporal por Consulta => “this.getTotalCharge()”
+- Replace Temp with Query => "this.getTotalCharge()"
 
 ![claseCustomer](/out/docs/diagrams/src/movies7/movies.svg)
 
 
-## <em>**Versión 8.**</em> Clase “Customer“ – Método “statement()“
+## <em>**Version 8.**</em> "Customer" Class – "statement()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Variable temporal innecesaria => “frequentRenterPoints”
+- Unnecessary temporary variable => "frequentRenterPoints"
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Temporal por Consulta =>  “this.getTotalFrequentRenterPoints()”
+- Replace Temp with Query =>  "this.getTotalFrequentRenterPoints()"
 
 ![claseCustomer](/out/docs/diagrams/src/movies8/movies.svg)
 
 
-## <em>**Versión 9.**</em> Clase “Rental“ – Método “getCharge()“
+## <em>**Version 9.**</em> "Rental" Class – "getCharge()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Experto en la Información => la mayor parte de la información es de Movie
+- Information Expert => most of the information is from Movie
 
 ### <em>**Refactoring**</em>
 
-- Mover Método => método “getCharge()” a clase “Movie”
+- Move Method => "getCharge()" method to "Movie" class
 
 ![claseCustomer](/out/docs/diagrams/src/movies9/movies.svg)
 
-## <em>**Versión 10.**</em> Clase “Rental“ – Método “getFrequentRenterPoints()“
+## <em>**Version 10.**</em> "Rental" Class – "getFrequentRenterPoints()" Method
 
 ### <em>**Smell Code:*</em>
 
-- Experto en la Información => la mayor parte de la información es de Movie
+- Information Expert => most of the information is from Movie
 
 ### <em>**Refactoring**</em>
 
-- Mover Método => método “getFrequentRenterPoints()” a clase “Movie”
+- Move Method => "getFrequentRenterPoints()" method to "Movie" class
 
 ![claseCustomer](/out/docs/diagrams/src/movies10/movies.svg)
 
 
-## <em>**Versión 11.**</em> Clase “Movie“ – Método “getCharge()“
+## <em>**Version 11.**</em> "Movie" Class – "getCharge()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Código de Tipo con Estrategia/Estado (inyección de dependencias) => Auto-encapsular campo => “priceCode”
+- Replace Type Code with Strategy/State (dependency injection) => Self Encapsulate Field => "priceCode"
 
 ![claseCustomer](/out/docs/diagrams/src/movies11/movies.svg)
 
 
-## <em>**Versión 12.**</em> Clase “Movie“ – Método “getCharge()“
+## <em>**Version 12.**</em> "Movie" Class – "getCharge()" Method
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Código de Tipo con Estrategia/Estado (inyección de dependencias) => Añadir nuevas clases => “Price”, “ChildrenPrice”, ...
+- Replace Type Code with Strategy/State (dependency injection) => Add new classes => "Price", "ChildrenPrice", ...
 
-## <em>**Versión 13.**</em> Clase “Movie” - Atributo “priceCode”
+## <em>**Version 13.**</em> "Movie" Class - "priceCode" Attribute
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Código de Tipo con Estrategia/Estado (inyección de dependencias) => Sustituir atributo: “int priceCode” por “Price price”
+- Replace Type Code with Strategy/State (dependency injection) => Replace attribute: "int priceCode" with "Price price"
 
 
 ![claseCustomer](/out/docs/diagrams/src/movies13/movies.svg)
 
-## <em>**Versión 14.**</em> Clase “Movie” - método “getCharge()”
+## <em>**Version 14.**</em> "Movie" Class - "getCharge()" method
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Código de Tipo con Estrategia/Estado (inyección de dependencias) => Mover método: método “getCharge()” a  Clase “Price”
+- Replace Type Code with Strategy/State (dependency injection) => Move method: "getCharge()" method to "Price" class
 
 ![claseCustomer](/out/docs/diagrams/src/movies14/movies.svg)
 
 
-## <em>**Versión 15.**</em> Clase “Price” - método “getCharge()”
+## <em>**Version 15.**</em> "Price" Class - "getCharge()" method
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Condicional con Polimorfismo => Redefinir método “getCharge()” en clases derivadas
+- Replace Conditional with Polymorphism => Override "getCharge()" method in derived classes
 
 ![claseCustomer](/out/docs/diagrams/src/movies15/movies.svg)
 
 
-## <em>**Versión 16.**</em> Clase “Price” - método “getFrequentRenterPoints()”
+## <em>**Version 16.**</em> "Price" Class - "getFrequentRenterPoints()" method
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Reemplazar Condicional con Polimorfismo => Redefinir método “getFrequentRenterPoints()” en clases derivadas
+- Replace Conditional with Polymorphism => Override "getFrequentRenterPoints()" method in derived classes
 
 ![claseCustomer](/out/docs/diagrams/src/movies16/movies.svg)
 
-## <em>**Versión 17.**</em> Clase “CustomerTest” - métodos de prueba con Tipo/Código
+## <em>**Version 17.**</em> "CustomerTest" Class - test methods with Type/Code
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Ocultar campo: añadir métodos “childrens()”, “regular()” y “newRelease()” en clase “MovieBuilder
+- Hide field: add "childrens()", "regular()" and "newRelease()" methods in "MovieBuilder" class
 
 ![claseCustomer](/out/docs/diagrams/src/movies17/movies.svg)
 
-## <em>**Versión 18.**</em> Clase “CustomerTest” - métodos de prueba con Tipo/Código
+## <em>**Version 18.**</em> "CustomerTest" Class - test methods with Type/Code
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
--	Ocultar campo: desde “CustomerTest” llamar a métodos “childrens()”, “regular()” y “newRelease()” de clase “MovieBuilder”
--	Sustituir campo: atributo “priceCode” por “Price” en clase “MovieBuilder”
--	Sustituir campo: atributo “priceCode” por “Price” en clase “Movie”
+-Hide field: from "CustomerTest" call "childrens()", "regular()" and "newRelease()" methods of "MovieBuilder" class
+-Replace field: "priceCode" attribute with "Price" in "MovieBuilder" class
+-Replace field: "priceCode" attribute with "Price" in "Movie" class
 
-## <em>**Versión 19.**</em> Clase “Price” - método “getPriceCode()”
+## <em>**Version 19.**</em> "Price" Class - "getPriceCode()" method
 
 ### <em>**Smell Code:**</em>
 
-- Sentencia Alternativa Múltiple => el comportamiento depende de un tipo/código/...
+- Multiple Alternative Statement => behavior depends on a type/code/...
 
 ### <em>**Refactoring**</em>
 
-- Eliminar método: “getPriceCode()” de clases “Price” y “Movie”
+- Remove method: "getPriceCode()" from "Price" and "Movie" classes
 
-## <em>**Versión 20.**</em> Jerarquía “Price”
+## <em>**Version 20.**</em> "Price" Hierarchy
 
 ### <em>**Smell Code:**</em>
 
-- Números mágilos => 2, 1.5, ...
+- Magic numbers => 2, 1.5, ...
 
 ### <em>**Refactoring**</em>
 
-- Añadir atributo: “CHARGE”, “DAYS_RENTER_THRESHOLD”, ... en jerarquía “Price”
+- Add attribute: "CHARGE", "DAYS_RENTER_THRESHOLD", ... in "Price" hierarchy
 
 ![claseCustomer](/out/docs/diagrams/src/movies20/movies.svg)
 
-## <em>**Versión 21**</em>
+## <em>**Version 21**</em>
 
 
 ![claseCustomer](/out/docs/diagrams/src/movies21/movies.svg)
